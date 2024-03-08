@@ -10,8 +10,8 @@
     "education": [
         {
             "institution": "Carnegie Mellon University, Pittsburgh",
-            "area": "Physics",
-            "studyType": "Ph.D.",
+            "area": "Physics (M.S. 2024; Ph.D. expected 2026)",
+            "studyType": "Graduate (Ph.D.)",
             "startDate": "2022-08",
             "endDate": "present",
             "advisor": "Prof. Scott Dodelson"
@@ -37,6 +37,12 @@
         }
     ],
     "awards": [
+        {
+            "title": "Jane Street Graduate Research Fellow",
+            "date": "2024.02",
+            "awarder": "Jane Street",
+            "summary": "https://www.janestreet.com/join-jane-street/programs-and-events/grf-profiles-2024/"
+        },
         {
             "title": "Reconstructing the initial conditions of the universe (PI)",
             "date": "2023.09",
