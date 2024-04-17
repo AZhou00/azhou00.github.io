@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Thank you Jane Street for the 2024 [Jane Street Graduate Research Fellow](https://www.janestreet.com/join-jane-street/programs-and-events/grf-profiles-2024/) 😊
+Thank you Jane Street for the 2024 [Jane Street Graduate Research Fellowship](https://www.janestreet.com/join-jane-street/programs-and-events/grf-profiles-2024/) 😊
