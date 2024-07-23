@@ -9,12 +9,19 @@
     "volunteer": [],
     "education": [
         {
+            "institution": "The University of Chicago, Chicago",
+            "area": "Ph.D in Physics",
+            "studyType": "Graduate (Ph.D.)",
+            "startDate": "2024-07",
+            "endDate": "present"
+        },
+        {
             "institution": "Carnegie Mellon University, Pittsburgh",
-            "area": "Physics (M.S. 2024; Ph.D. expected 2026)",
+            "area": "Ph.D in Physics, (M.S. 2024)",
             "studyType": "Graduate (Ph.D.)",
             "startDate": "2022-08",
-            "endDate": "present",
-            "advisor": "Prof. Scott Dodelson"
+            "endDate": "2024-07"
+            // "advisor": "Prof. Scott Dodelson"
         },
         {
             "institution": "Duke University, Durham",
