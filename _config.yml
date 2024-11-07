@@ -6,7 +6,7 @@ title: 'blank' # the website title (if 'blank', full name will be used instead)
 first_name: Alan
 middle_name: Junzhe
 last_name: Zhou
-email: junzhez@andrew.cmu.edu
+email: ajzhou@uchicago.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   My page!
 footer_text: >
@@ -106,7 +106,7 @@ discord_id: # your discord id (18-digit unique numerical identifier)
 zotero_username: # your zotero username
 inspirehep_id: 1978707 # your inspire id
 contact_note: >
-  junzhez@andrew.cmu.edu !
+  ajzhou@uchicago.edu !
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
