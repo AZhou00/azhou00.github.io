@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alan Junzhe Zhou</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <main id="content">
+        <section id="intro-section" class="glass-panel">
+            <div class="profile-container">
+                <img src="input_image/profile.jpg" alt="Profile" class="profile-pic">
+                <div id="intro-text">Loading Bio...</div>
+            </div>
+            
+            <div class="links">
+                <a href="mailto:ajzhou@uchicago.edu">Email</a>
+                <a href="https://arxiv.org/search/astro-ph?searchtype=author&query=Zhou,+A+J">ArXiv</a>
+                <a href="#">CV</a>
+            </div>
+        </section>
+
+        <section id="papers-section">
+            <h2>Publications</h2>
+            <div id="paper-list">Loading Papers...</div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Alan Junzhe Zhou</p>
+        </footer>
+    </main>
+
+    <script src="js/background.js"></script>
+    <script src="js/loader.js"></script>
+</body>
+</html>
