@@ -1,8 +1,8 @@
 :root {
     --bg-color: #050505;
     --text-color: #e0e0e0;
-    --link-color: #42a5f5; /* Academic Blue, brightened for dark mode */
-    --glass-bg: rgba(10, 10, 12, 0.75);
+    --link-color: #42a5f5;
+    --glass-bg: rgba(10, 10, 12, 0.0); /* Changed alpha to 0.0 for transparency */
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-size: 1.25rem; /* Requested larger text */
+    font-size: 1.25rem;
     line-height: 1.8;
     overflow-x: hidden;
 }
@@ -22,118 +22,75 @@ body {
 }
 
 main {
-    max-width: 900px;
+    max-width: 1000px; /* Max width constraint */
     margin: 0 auto;
     padding: 3rem 1.5rem;
 }
 
+/* Shared Width Control */
+.content-block {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 900px; /* Actual content width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Typography */
-h1 { 
-    font-size: 2.8rem; 
-    margin-bottom: 0.2rem; 
-    color: #fff; 
-    font-weight: 400; /* Regular weight, bold handled by <b> tag */
-}
-
-h2 { 
-    font-size: 2rem; 
-    color: #fff; 
-    border-bottom: 1px solid rgba(255,255,255,0.2); 
-    padding-bottom: 0.5rem;
-}
-
-.subtitle {
-    font-size: 1.35rem; /* Larger */
-    color: #ffffff;    /* White */
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-}
-
+h1 { font-size: 2.8rem; margin-bottom: 0.2rem; color: #fff; font-weight: 400; }
+h2 { font-size: 2rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.5rem; }
+.subtitle { font-size: 1.35rem; color: #ffffff; margin-top: 0; margin-bottom: 1.5rem; font-weight: 400; }
 a { color: var(--link-color); text-decoration: none; transition: 0.2s; }
 a:hover { color: #fff; text-decoration: underline; }
 
-/* Links Section (Top) */
-.links {
-    margin-bottom: 2rem; /* Space before bio */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.icon-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--link-color);
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
+/* Links */
+.links { margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.icon-link { display: flex; align-items: center; gap: 0.5rem; color: var(--link-color); font-weight: 500; font-size: 1.1rem; }
 .icon-link:hover { color: #fff; text-decoration: none; }
 
 /* Panels */
 .glass-panel {
     background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border-radius: 8px;
     padding: 2.5rem;
     margin-bottom: 3rem;
 }
 
-/* Profile Image Logic (Float) */
-.bio-wrapper {
-    display: block; 
-    overflow: hidden; 
-}
-
-.profile-pic {
-    float: right;
-    width: 280px;
-    margin-left: 2.5rem;
-    margin-bottom: 1rem;
-    border-radius: 0; /* No edge/radius */
-    border: none;
-}
+/* Profile Image */
+.bio-wrapper { display: block; overflow: hidden; }
+.profile-pic { float: right; width: 280px; margin-left: 2.5rem; margin-bottom: 1rem; border: none; }
 
 /* Paper List */
 .paper-card {
     display: flex;
-    gap: 1.5rem;
-    background: rgba(0, 0, 0, 0.6);
+    gap: 2.5rem; /* Increased gap for larger image space */
+    background: rgba(0, 0, 0, 0.0); /* Changed alpha to 0.0 for transparency */
     border-left: 3px solid var(--link-color);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
+    padding: 2rem;
+    margin-bottom: 3rem; /* More space between papers */
     transition: transform 0.2s;
+    min-height: 250px;
 }
 
 .paper-card:hover { transform: translateX(5px); background: rgba(30,30,30,0.8); }
 
-.paper-thumb {
-    width: 140px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 2px;
+/* The Placeholder for Particles */
+.paper-thumb-mount {
+    width: 300px;
+    height: 250px; /* Fixed height for consistent particle area */
+    flex-shrink: 0;
+    /* Invisible, but takes up space */
+    background: rgba(255, 255, 255, 0.02); 
+    border: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
-.paper-details h3 { 
-    margin-top: 0; 
-    font-size: 1.3rem; 
-    line-height: 1.3;
-}
+.paper-details { flex-grow: 1; }
+.paper-details h3 { margin-top: 0; font-size: 1.4rem; line-height: 1.3; }
+.paper-meta { font-size: 1.1rem; color: #aaa; margin-bottom: 0.5rem; }
+.paper-authors { font-style: italic; font-size: 1.1rem; margin-bottom: 0.5rem; }
 
-.paper-meta { font-size: 1rem; color: #aaa; margin-bottom: 0.5rem; }
-.paper-authors { font-style: italic; font-size: 1rem; margin-bottom: 0.5rem; }
-
-@media (max-width: 768px) {
-    .profile-pic {
-        float: none;
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto 2rem auto;
-    }
+@media (max-width: 850px) {
     .paper-card { flex-direction: column; }
-    .paper-thumb { width: 100%; max-height: 250px; }
+    .paper-thumb-mount { width: 100%; height: 200px; }
+    .profile-pic { float: none; display: block; width: 100%; max-width: 300px; margin: 0 auto 2rem auto; }
 }
