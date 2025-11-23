@@ -1,0 +1,3 @@
+conda create -n web python=3.10 nodejs -y
+conda activate web
+npm install -g http-server
