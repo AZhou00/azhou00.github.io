@@ -13,7 +13,7 @@
     --paper-hover-opacity: 0.6;
     
     /* Blur Control */
-    --panel-blur: 2px;
+    --panel-blur: 0px;
     
     /* Spacing */
     --section-gap: 0rem;  /* Consistent spacing between major sections */
