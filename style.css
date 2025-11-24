@@ -210,7 +210,7 @@ a:hover {
         justify-content: flex-start;
     }
     .icon-link { 
-        font-size: 0.75rem;
+        font-size: 1.1rem;
         gap: 0.3rem;
     }
     .icon-link svg {
