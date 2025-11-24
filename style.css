@@ -1,23 +1,45 @@
+/* ===== CSS VARIABLES ===== */
 :root {
+    /* Colors */
     --bg-color: #050505;
     --text-color: #e0e0e0;
-    --link-color: #42a5f5; /* Academic Blue, brightened for dark mode */
-    --glass-bg: rgba(10, 10, 12, 0.75);
+    --link-color: #6fb5ef;
+    --white: #fff;
+    --border-color: rgba(255, 255, 255, 0.2);
+    
+    /* Opacity Controls */
+    --panel-opacity: 0.2;
+    --paper-opacity: 0.2;
+    --paper-hover-opacity: 0.6;
+    
+    /* Blur Control */
+    --panel-blur: 2px;
+    
+    /* Spacing */
+    --section-gap: 0rem;  /* Consistent spacing between major sections */
+    --content-gap: 1rem;
+    
+    /* Computed Values */
+    --glass-bg: rgba(10, 10, 12, var(--panel-opacity));
 }
 
+/* ===== BASE STYLES ===== */
 body {
     margin: 0;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-size: 1.25rem; /* Requested larger text */
+    font-size: 1.25rem;
     line-height: 1.8;
     overflow-x: hidden;
 }
 
 #canvas-container {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100vh;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh;
     z-index: -1;
 }
 
@@ -27,38 +49,47 @@ main {
     padding: 3rem 1.5rem;
 }
 
-/* Typography */
+/* ===== TYPOGRAPHY ===== */
 h1 { 
     font-size: 2.8rem; 
     margin-bottom: 0.2rem; 
-    color: #fff; 
-    font-weight: 400; /* Regular weight, bold handled by <b> tag */
+    color: var(--white); 
+    font-weight: 400;
 }
 
 h2 { 
     font-size: 2rem; 
-    color: #fff; 
-    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    margin-top: 0;
+    color: var(--white); 
+    border-bottom: 1px solid var(--border-color); 
     padding-bottom: 0.5rem;
 }
 
 .subtitle {
-    font-size: 1.35rem; /* Larger */
-    color: #ffffff;    /* White */
+    font-size: 1.6rem;
+    color: var(--white);
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--content-gap);
     font-weight: 400;
 }
 
-a { color: var(--link-color); text-decoration: none; transition: 0.2s; }
-a:hover { color: #fff; text-decoration: underline; }
+a { 
+    color: var(--link-color); 
+    text-decoration: none; 
+    transition: 0.2s; 
+}
 
-/* Links Section (Top) */
+a:hover { 
+    color: var(--white); 
+    text-decoration: underline; 
+}
+
+/* ===== HEADER & LINKS ===== */
 .links {
-    margin-bottom: 2rem; /* Space before bio */
+    margin-bottom: 1rem; 
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: var(--content-gap);
 }
 
 .icon-link {
@@ -70,22 +101,30 @@ a:hover { color: #fff; text-decoration: underline; }
     font-size: 1.1rem;
 }
 
-.icon-link:hover { color: #fff; text-decoration: none; }
-
-/* Panels */
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 8px;
-    padding: 2.5rem;
-    margin-bottom: 3rem;
+.icon-link:hover { 
+    color: var(--white); 
+    text-decoration: none; 
 }
 
-/* Profile Image Logic (Float) */
+/* ===== PANELS & SECTIONS ===== */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--panel-blur));
+    -webkit-backdrop-filter: blur(var(--panel-blur));
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: var(--section-gap);
+}
+
+/* ===== BIO SECTION ===== */
 .bio-wrapper {
     display: block; 
     overflow: hidden; 
+}
+
+#intro-text {
+    font-size: 1.35rem;
+    line-height: 1.25;
 }
 
 .profile-pic {
@@ -93,25 +132,28 @@ a:hover { color: #fff; text-decoration: underline; }
     width: 280px;
     margin-left: 2.5rem;
     margin-bottom: 1rem;
-    border-radius: 0; /* No edge/radius */
+    border-radius: 0;
     border: none;
 }
 
-/* Paper List */
+/* ===== PUBLICATIONS ===== */
 .paper-card {
     display: flex;
-    gap: 1.5rem;
-    background: rgba(0, 0, 0, 0.6);
+    gap: var(--content-gap);
+    background: rgba(0, 0, 0, var(--paper-opacity));
     border-left: 3px solid var(--link-color);
-    padding: 1.5rem;
+    padding: var(--content-gap);
     margin-bottom: 2rem;
     transition: transform 0.2s;
 }
 
-.paper-card:hover { transform: translateX(5px); background: rgba(30,30,30,0.8); }
+.paper-card:hover { 
+    transform: translateX(5px); 
+    background: rgba(30, 30, 30, var(--paper-hover-opacity)); 
+}
 
 .paper-thumb {
-    width: 140px;
+    width: 280px;
     height: auto;
     object-fit: contain;
     border-radius: 2px;
@@ -123,17 +165,47 @@ a:hover { color: #fff; text-decoration: underline; }
     line-height: 1.3;
 }
 
-.paper-meta { font-size: 1rem; color: #aaa; margin-bottom: 0.5rem; }
-.paper-authors { font-style: italic; font-size: 1rem; margin-bottom: 0.5rem; }
+.paper-meta { 
+    font-size: 1rem; 
+    color: #aaa; 
+    margin-bottom: 0.5rem; 
+}
 
-@media (max-width: 768px) {
-    .profile-pic {
-        float: none;
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto 2rem auto;
-    }
-    .paper-card { flex-direction: column; }
-    .paper-thumb { width: 100%; max-height: 250px; }
+.paper-authors { 
+    font-size: 1.15rem; 
+    line-height: 1.2;
+    margin-bottom: 0.5rem; 
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets & small desktops (e.g. iPad) */
+@media (max-width: 900px) {
+    main { padding: 2rem 1rem; }
+    h1 { font-size: 2.2rem; }
+    .subtitle { font-size: 1.3rem; }
+    .profile-pic { width: 200px; margin-left: 1.5rem; }
+    #intro-text { font-size: 1.2rem; }
+}
+
+/* Mobile phones (profile pic floats right, text wraps left) */
+@media (max-width: 600px) {
+    body { font-size: 1.1rem; }
+    main { padding: 1.5rem 1rem; }
+    
+    h1 { font-size: 1.6rem; line-height: 1.2; }
+    h2 { font-size: 1.6rem; }
+    .subtitle { font-size: 1.05rem; margin-bottom: 1rem; }
+    
+    .links { gap: 0.8rem; }
+    .icon-link { font-size: 1rem; }
+    
+    .profile-pic { width: 130px; margin-left: 1rem; margin-bottom: 0.5rem; }
+    #intro-text { font-size: 1rem; line-height: 1.4; }
+    
+    .paper-card { flex-direction: column; padding: 1rem; gap: 1rem; }
+    .paper-thumb { width: 100%; max-height: 200px; }
+    .paper-details h3 { font-size: 1.15rem; }
+    .paper-authors { font-size: 1rem; }
+    .paper-meta { font-size: 0.95rem; }
 }

@@ -1,6 +1,8 @@
 // --- CONFIGURATION ---
+const ENABLE_BACKGROUND = true;  // Set to false to disable the background animation
+
 const config = {
-    particleCount: 10000,
+    particleCount: 2000,
     particleSize: 0.1,
     color: 0xffffff,        // White particles
     bloomStrength: 1.,     // Glow intensity
@@ -10,6 +12,11 @@ const config = {
     simulationSpeed: 0.3,   // Speed of evolution
     zoom: 15                // Camera zoom distance
 };
+
+// Exit early if background is disabled
+if (!ENABLE_BACKGROUND) {
+    console.log("Background animation disabled");
+} else {
 
 function getCircleTexture() {
     const size = 32;
@@ -145,3 +152,5 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     composer.setSize(window.innerWidth, window.innerHeight);
 });
+
+} // End of ENABLE_BACKGROUND check
