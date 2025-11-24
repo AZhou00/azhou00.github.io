@@ -13,13 +13,12 @@ const config = {
     noiseStrength: 0.1,        // Random perturbation strength
     diffusion: 0.05,           // Random walk diffusion
     resetProbability: 0.0005,   // Probability to reinitialize a particle per frame
-    velocityColorScale: 1,    // How much velocity affects color hue
-    baseColor: {               // Base color for neutral velocity (RGB 0-255)
-        r: 186,                // Red component
-        g: 129,                 // Green component
-        b: 129                  // Blue component (deeper red/burgundy)
-    },
-    colorSaturation: 1       // Color saturation (0.0 = white, 1.0 = full color)
+    velocityColorScale: 1,     // How much velocity affects color transition
+    colorMap: {
+        approaching: { r: 100, g: 150, b: 255 },  // Blue for moving toward observer
+        neutral: { r: 255, g: 255, b: 255 },      // White for no velocity
+        receding: { r: 255, g: 100, b: 100 }      // Red for moving away
+    }
 };
 
 // Exit early if background is disabled
@@ -43,50 +42,15 @@ function getCircleTexture() {
     return new THREE.CanvasTexture(canvas);
 }
 
-// Convert RGB (0-255) to Hue (0-360)
-function rgbToHue(r, g, b) {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    const delta = max - min;
-    
-    if (delta === 0) return 0;
-    
-    let hue;
-    if (max === r) {
-        hue = 60 * (((g - b) / delta) % 6);
-    } else if (max === g) {
-        hue = 60 * ((b - r) / delta + 2);
-    } else {
-        hue = 60 * ((r - g) / delta + 4);
-    }
-    
-    return (hue + 360) % 360;
+// Linear interpolation between two colors
+function lerpColor(color1, color2, t) {
+    t = Math.max(0, Math.min(1, t)); // Clamp t between 0 and 1
+    return {
+        r: (color1.r + (color2.r - color1.r) * t) / 255,
+        g: (color1.g + (color2.g - color1.g) * t) / 255,
+        b: (color1.b + (color2.b - color1.b) * t) / 255
+    };
 }
-
-// Convert HSV to RGB (simpler than the hue-only conversion)
-function hsvToRgb(h, s, v) {
-    h = ((h % 360) + 360) % 360;
-    const c = v * s;
-    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
-    const m = v - c;
-    let r, g, b;
-    
-    if (h < 60) { r = c; g = x; b = 0; }
-    else if (h < 120) { r = x; g = c; b = 0; }
-    else if (h < 180) { r = 0; g = c; b = x; }
-    else if (h < 240) { r = 0; g = x; b = c; }
-    else if (h < 300) { r = x; g = 0; b = c; }
-    else { r = c; g = 0; b = x; }
-    
-    return { r: r + m, g: g + m, b: b + m };
-}
-
-// Calculate base hue from config
-const baseHue = rgbToHue(config.baseColor.r, config.baseColor.g, config.baseColor.b);
 
 // --- SCENE SETUP ---
 const scene = new THREE.Scene();
@@ -220,10 +184,16 @@ function animate() {
                            velocities[i3 + 1] * cameraDir.y + 
                            velocities[i3 + 2] * cameraDir.z;
 
-        // Map velocity to color
-        // Shift hue based on line-of-sight velocity relative to base color
-        const hue = baseHue + losVelocity * config.velocityColorScale;
-        const rgb = hsvToRgb(hue, config.colorSaturation, 1.0);
+        // Map velocity to color (Doppler shift simulation)
+        const velocityFactor = losVelocity * config.velocityColorScale;
+        let rgb;
+        if (velocityFactor > 0) {
+            // Moving away: interpolate neutral -> red
+            rgb = lerpColor(config.colorMap.neutral, config.colorMap.receding, velocityFactor);
+        } else {
+            // Moving toward: interpolate blue -> neutral
+            rgb = lerpColor(config.colorMap.approaching, config.colorMap.neutral, 1 + velocityFactor);
+        }
         
         colors[i3] = rgb.r;
         colors[i3 + 1] = rgb.g;
