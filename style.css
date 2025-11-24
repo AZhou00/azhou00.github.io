@@ -46,7 +46,7 @@ body {
 main {
     max-width: 900px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 5rem 1.5rem 3rem;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -85,11 +85,21 @@ a:hover {
 }
 
 /* ===== HEADER & LINKS ===== */
-.links {
-    margin-bottom: 1rem; 
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--content-gap);
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding: 0.8rem 1rem;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .icon-link {
@@ -98,7 +108,8 @@ a:hover {
     gap: 0.5rem;
     color: var(--link-color);
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .icon-link:hover { 
@@ -181,7 +192,7 @@ a:hover {
 
 /* Tablets & small desktops (e.g. iPad) */
 @media (max-width: 900px) {
-    main { padding: 2rem 1rem; }
+    main { padding: 5rem 1rem 2rem; }
     h1 { font-size: 2.2rem; }
     .subtitle { font-size: 1.3rem; }
     .profile-pic { width: 200px; margin-left: 1.5rem; }
@@ -191,14 +202,25 @@ a:hover {
 /* Mobile phones (profile pic floats right, text wraps left) */
 @media (max-width: 600px) {
     body { font-size: 1.1rem; }
-    main { padding: 1.5rem 1rem; }
+    main { padding: 4rem 1rem 1.5rem; }
+    
+    .top-nav { 
+        gap: 0.5rem; 
+        padding: 0.6rem 0.5rem 0.6rem 2.5rem;
+        justify-content: flex-start;
+    }
+    .icon-link { 
+        font-size: 0.75rem;
+        gap: 0.3rem;
+    }
+    .icon-link svg {
+        width: 16px;
+        height: 16px;
+    }
     
     h1 { font-size: 1.6rem; line-height: 1.2; }
     h2 { font-size: 1.6rem; }
     .subtitle { font-size: 1.05rem; margin-bottom: 1rem; }
-    
-    .links { gap: 0.8rem; }
-    .icon-link { font-size: 1rem; }
     
     .profile-pic { width: 130px; margin-left: 1rem; margin-bottom: 0.5rem; }
     #intro-text { font-size: 1rem; line-height: 1.4; }
