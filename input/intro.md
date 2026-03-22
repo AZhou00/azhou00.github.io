@@ -1,6 +1,12 @@
-Hi, this is Alan, 周俊哲 :) I am an fourth-year Physics Ph.D. candidate at the University of Chicago advised by Prof. Scott Dodelson. I work on cosmology, astrophysics, and statistical learning and inference. I use deep probabilistic models to reconstruct the evolutionary trajectory of our universe using large observational data sets. I like forward probabalistic modeling, differentiable algorithms, and finding patterns across low SNR data ♭
+Hi, this is Alan, 周俊哲 :) I am an incoming researcher at Two Sigma Investment.
+I earned my Ph.D. in Physics from the University of Chicago advised by Prof.
+Scott Dodelson, where I worked on (and still work on) cosmology, astrophysics, and statistical learning and
+inference. I use deep probabilistic models to reconstruct the evolutionary
+trajectory of our universe using large observational data sets. I like forward
+probabalistic modeling, differentiable algorithms, and finding patterns across
+low SNR data ♭
 
-I am currently at [UChicago](https://www.uchicago.edu), I am part of the [Kavli Institute for Cosmological Physics](https://kavlicosmo.uchicago.edu/) and the [SkAI Institute](https://skai-institute.org/) for artificial intelligence research. I did my first two years of Ph.D. at [CMU](https://www.cmu.edu/physics/), where I was a part of the [McWilliams Center for Cosmology](https://www.cmu.edu/cosmology/) and the [NSF AI Planning Institute](https://www.cmu.edu/ai-physics-institute/). I graduated from Duke in 2022. Most of my works are done at the Perlmutter supercomputer at NERSC and the Bridges-2 supercomputer at the PSC. I am also supported by Jane Street as a [Jane Street Graduate Research Fellow](https://www.janestreet.com/join-jane-street/programs-and-events/grf-profiles-2024/). 
+While at [UChicago](https://www.uchicago.edu), I was part of the [Kavli Institute for Cosmological Physics](https://kavlicosmo.uchicago.edu/) and the [SkAI Institute](https://skai-institute.org/) for artificial intelligence research. I did my first two years of Ph.D. at [CMU](https://www.cmu.edu/physics/), where I was a part of the [McWilliams Center for Cosmology](https://www.cmu.edu/cosmology/) and the [NSF AI Planning Institute](https://www.cmu.edu/ai-physics-institute/). I graduated from Duke in 2022. Most of my works are done at the Perlmutter supercomputer at NERSC and the Bridges-2 supercomputer at the PSC. I was also supported by Jane Street as a [Jane Street Graduate Research Fellow](https://www.janestreet.com/join-jane-street/programs-and-events/grf-profiles-2024/). 
 
 In case you are wondering - the background is a doppler shifted PhysRevE.50.R647 case R attractor!
 <br/>

@@ -73,6 +73,14 @@ h2 {
     font-weight: 400;
 }
 
+.main-header .subtitle {
+    line-height: 1.2;
+}
+
+.main-header .subtitle:not(:last-child) {
+    margin-bottom: 0;
+}
+
 a { 
     color: var(--link-color); 
     text-decoration: none; 
