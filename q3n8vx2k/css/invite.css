@@ -1,0 +1,342 @@
+/* Invitation — A4-width letter, fixed layout on wide screens */
+
+:root {
+    /* Viewport left/right: same family as column, fainter than --inv-bg */
+    --page-bg: #faf6ef;
+    --inv-bg: #f4f0e8;
+    --inv-ink: #2c2825;
+    --inv-muted: #6a635c;
+    --inv-line: #2c2825;
+    --inv-accent: #8b7355;
+    --inv-btn-off: #c4bdb4;
+    --inv-btn-on: #5c5348;
+    /* A4 portrait width; content stops growing wider than this */
+    --letter-w: 210mm;
+    /* Door image width; arch-offset = half */
+    --door-w: 228px;
+    --arch-offset: calc(var(--door-w) / 2);
+    /* Door top is a semicircle with radius = --arch-offset; lift text by half that radius */
+    --invite-lift-half-radius: calc(var(--arch-offset) / 2);
+    /* Shared: move upper + lower text blocks upward (increase = move up more) */
+    --invite-text-nudge-up: 1.1rem;
+    /* Max width of lower block (.block-lower-right: form + note) */
+    --text-max: 290px;
+    /* Max width of upper letter column (.block-upper-text) */
+    --text-max-upper: 320px;
+    /* Horizontal inset from beige edge; +20% vs prior 0.2625 */
+    --letter-pad-x: calc(var(--door-w) * 0.315);
+    --letter-pad-top: 3rem;
+    /* was 1.75rem; +50% → space below divider before upper block */
+    --space-after-rule: 2.625rem;
+    /* gap between upper block and lower block (was ~2.5rem; pushed down further) */
+    --space-after-upper: 5.75rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Drifting particles (invite.js) — only visible in viewport gutters behind .invite-page */
+.gutter-particles {
+    position: fixed;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.invite-body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--inv-ink);
+    font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", "楷体", serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.72;
+}
+
+/* Beige letter: A4 width max, centered; faint same-tone gutters on both sides */
+.invite-page {
+    position: relative;
+    z-index: 1;
+    width: min(var(--letter-w), calc(100vw - 1.5rem));
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: var(--inv-bg);
+    /* Wash → main art (right, contain) → tiled grain fill in gaps */
+    background-image:
+        linear-gradient(
+            rgba(244, 240, 232, 0.42),
+            rgba(244, 240, 232, 0.42)
+        ),
+        url("../img/bkg.png"),
+        url("../img/bkg_fill.png");
+    background-size:
+        100% 100%,
+        contain,
+        auto;
+    background-position:
+        center,
+        right center,
+        top left;
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        repeat;
+    overflow-x: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.confetti-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.invite-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--letter-pad-top) var(--letter-pad-x) 3rem;
+}
+
+.dedication {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.65rem;
+    font-weight: 400;
+    margin: 0 0 0.4rem;
+    letter-spacing: 0.02em;
+}
+
+.dedication-rule {
+    width: min(14rem, 100%);
+    height: 1px;
+    background: #4a4a4a;
+    margin: 0 0 var(--space-after-rule);
+}
+
+.block-upper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: var(--space-after-upper);
+}
+
+.block-upper-text {
+    max-width: min(var(--text-max-upper), 100%);
+    /* Was ~aligned with arch; minus half radius + --invite-text-nudge-up lifts the block */
+    margin-top: calc(
+        var(--arch-offset) - var(--invite-text-nudge-up) - var(--invite-lift-half-radius)
+    );
+    text-align: right;
+    font-size: 0.8rem;
+    line-height: 1.76;
+}
+
+.door-frame {
+    width: var(--door-w);
+    flex-shrink: 0;
+    border-radius: var(--arch-offset) var(--arch-offset) 0 0;
+    overflow: hidden;
+}
+
+.door-frame-inner {
+    line-height: 0;
+}
+
+.door-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.block-lower {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.block-lower-right {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: var(--text-max);
+    /* Same vertical rhythm as .block-upper-text */
+    margin-top: calc(
+        var(--arch-offset) - 0.65rem - var(--invite-text-nudge-up) -
+            var(--invite-lift-half-radius)
+    );
+}
+
+.block-lower-text {
+    text-align: left;
+    font-size: 0.8rem;
+    line-height: 1.76;
+}
+
+.form-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.35rem;
+    margin-bottom: 0.75rem;
+}
+
+.form-under-fields {
+    margin: 0.35rem 0 0;
+    font-size: 0.77rem;
+    line-height: 1.72;
+    color: var(--inv-muted);
+    max-width: 100%;
+}
+
+.form-under-fields .invite-signature {
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding-left: 12rem;
+}
+
+/* Width in em = relative to this input’s font (inherits .block-lower-text 0.8rem) */
+.underline-input {
+    width: 14em;
+    min-width: 12em;
+    max-width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--inv-line);
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    padding: 0.12rem 0.1rem;
+}
+
+.underline-input:focus {
+    outline: none;
+    border-bottom-color: var(--inv-accent);
+}
+
+.actions {
+    margin-top: 0.75rem;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#accept-btn {
+    padding: 0.45rem 1.1rem;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--inv-btn-off);
+    border-radius: 3px;
+    background: #e8e4dc;
+    color: var(--inv-btn-off);
+    cursor: not-allowed;
+}
+
+#accept-btn:not(:disabled) {
+    border-color: var(--inv-btn-on);
+    background: var(--inv-btn-on);
+    color: var(--inv-bg);
+    cursor: pointer;
+}
+
+#accept-btn:not(:disabled):hover {
+    filter: brightness(1.05);
+}
+
+#no-btn {
+    padding: 0.45rem 1.1rem;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--inv-btn-off);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--inv-muted);
+    cursor: pointer;
+}
+
+#no-btn:hover {
+    border-color: var(--inv-accent);
+    color: var(--inv-ink);
+}
+
+#no-btn.no-btn--floating {
+    transition: left 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        top 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #no-btn.no-btn--floating {
+        transition: none;
+    }
+}
+
+#pdf-status {
+    margin-top: 0.65rem;
+    font-size: 0.8rem;
+    color: var(--inv-muted);
+    min-height: 1.2rem;
+}
+
+/* Narrow phones: allow fluid door + text */
+@media (max-width: 520px) {
+    :root {
+        --door-w: min(42vw, 202px);
+        --text-max: 100%;
+        --text-max-upper: 100%;
+    }
+
+    .block-upper {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .block-upper-text {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .door-frame {
+        align-self: flex-end;
+    }
+
+    .block-lower {
+        flex-direction: column;
+    }
+
+    .block-lower-right {
+        margin-top: 0.65rem;
+        max-width: 100%;
+    }
+
+    .block-lower .door-frame {
+        align-self: flex-start;
+    }
+
+    .dedication {
+        font-size: 1.45rem;
+    }
+}
